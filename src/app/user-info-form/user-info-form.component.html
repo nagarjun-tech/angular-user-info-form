@@ -1,0 +1,116 @@
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-header p-header">
+          <h2>User Registration Flow</h2>
+        </div>
+        <div class="p-card-body">
+          <mat-stepper>
+            <mat-step >
+                <ng-template matStepLabel>User input form</ng-template>
+                <form class="row g-3" [formGroup]="userFormGroup">
+                  <div class="col-md-6" [ngClass]="{'has-errors': firstNameControl?.errors && (firstNameControl?.touched || firstNameControl?.dirty ) }">
+                    <label for="inputFirstName" class="form-label required">First name</label>
+                    <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+                    <div class="error-mesg" *ngIf="firstNameControl?.errors && (firstNameControl?.touched || firstNameControl?.dirty )">
+                         <span>This field is required.</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6" [ngClass]="{'has-errors': lastNameControl?.errors && (lastNameControl?.touched || lastNameControl?.dirty ) }">
+                    <label for="inputLastName" class="form-label required">Last name</label>
+                    <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
+                    <div class="error-mesg" *ngIf="lastNameControl?.errors && (lastNameControl?.touched || lastNameControl?.dirty )">
+                      <span>This field is required.</span>
+                    </div>
+                  </div>
+                  <div class="col-12" >
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
+                  </div>
+                  <div class="col-12" >
+                    <label for="inputAddress2" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" formControlName="address2">
+                  </div>
+                  <div class="col-md-6" [ngClass]="{'has-errors': cityControl?.errors && (cityControl?.touched || cityControl?.dirty ) }">
+                    <label for="inputCity" class="form-label required">City</label>
+                    <input type="text" class="form-control" id="inputCity" formControlName="city">
+                    <div class="error-mesg" *ngIf="cityControl?.errors && (cityControl?.touched || cityControl?.dirty )">
+                      <span>This field is required.</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4" [ngClass]="{'has-errors': stateNameControl?.errors && (stateNameControl?.touched || stateNameControl?.dirty ) }">
+                    <label for="inputState" class="form-label required">State</label>
+                    <select id="inputState" class="form-select" formControlName="state">
+                      <option selected>Choose...</option>
+                      <option>...</option>
+                    </select>
+                    <div class="error-mesg" *ngIf="stateNameControl?.errors && (stateNameControl?.touched || stateNameControl?.dirty )">
+                      <span>This field is required.</span>
+                    </div>
+                  </div>
+                  <div class="col-md-2" [ngClass]="{'has-errors': zipCodeControl?.errors && (zipCodeControl?.touched || zipCodeControl?.dirty ) }">
+                    <label for="inputZip" class="form-label required">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" formControlName="zipCode">
+                    <div class="error-mesg" *ngIf="zipCodeControl?.errors && (zipCodeControl?.touched || zipCodeControl?.dirty )">
+                      <span *ngIf="zipCodeControl?.errors?.required">This field is required.</span>
+                      <span *ngIf="zipCodeControl?.errors?.pattern">should have 5 digits</span>
+                    </div>
+                  </div>
+                  <div class="col-12 p-footer-action-buttons">
+                    <button type="submit" class="btn btn-outline-primary" matStepperNext [attr.disabled]="userFormGroup?.invalid ? true : null" >Next</button>
+                  </div>
+                </form>
+            </mat-step>
+        
+            <mat-step >
+              <ng-template matStepLabel>User input preview</ng-template>
+              <div class="container p-user-preview" >
+                <div class="row row-cols-2">
+                  <div class="col">First name</div>
+                  <div class="col-6">{{firstNameControl?.value}}</div>
+                  <div class="col">Last name</div>
+                  <div class="col-6">{{lastNameControl?.value}}</div>
+                  <div class="col">Address</div>
+                  <div class="col-6">{{addressControl?.value}}</div>
+                  <div class="col">Address 2</div>
+                  <div class="col-6">{{address2Control?.value}}</div>
+                  <div class="col">City</div>
+                  <div class="col-6">{{cityControl?.value}}</div>
+                  <div class="col">State</div>
+                  <div class="col-6">{{stateNameControl?.value}}</div>
+                  <div class="col">Zip code</div>
+                  <div class="col-6">{{zipCodeControl?.value}}</div>
+                </div>
+                
+              </div>
+              <div class="col-12 p-footer-action-buttons" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-outline-secondary" matStepperPrevious style="margin-right: 10px;" >Back</button>
+                <button type="submit" class="btn btn-outline-primary" matStepperNext (click)="onSubmitData()">Sumbit</button>
+              </div>
+            </mat-step>
+        
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>Your data is submitted successfully! on <b>{{ submittedDate | date }}</b> and You can track the status with the reference <b>{{ randomValue }} </b></p>
+                <button type="submit" class="btn btn-outline-primary" style="margin-top: 40px;">Exit</button>
+            </mat-step>
+        </mat-stepper>
+
+        <div class="home-globe-container home-globe-container-webgl" data-feature="home_page_globe" data-show-when-feature-enabled="true" data-feature-hydro="{&quot;event_type&quot;:&quot;feature_flag_decision&quot;,&quot;payload&quot;:{&quot;feature&quot;:&quot;home_page_globe&quot;,&quot;originating_url&quot;:&quot;https://github.com/&quot;,&quot;user_id&quot;:null}}" data-feature-hydro-hmac="be0cbc7da2f32edf891ea5670441a984e859ce28aaba3fb91263d03f7c5a368d" style="">
+            <div class="mx-auto width-full mt-n9 mt-lg-2 home-globe position-relative height-full js-webgl-globe">
+              <video width="916" height="918" loop="" muted="" playsinline="" preload="none" class="home-globe-container-video js-globe-fallback-video " hidden="">
+                <source type="video/mp4; codecs=hevc,mp4a.40.2" src="https://github.githubassets.com/images/modules/site/home/globe-900.hevc.mp4">
+                <source type="video/mp4; codecs=avc1.4D401E,mp4a.40.2" src="https://github.githubassets.com/images/modules/site/home/globe-900.h264.mp4">
+              </video>
+              <video loop="" muted="" playsinline="" preload="none" class="home-globe-container-video js-globe-fallback-video-small" hidden="">
+                <source type="video/mp4; codecs=hevc,mp4a.40.2" src="https://github.githubassets.com/images/modules/site/home/globe-500.hevc.mp4">
+                <source type="video/mp4; codecs=avc1.4D401E,mp4a.40.2" src="https://github.githubassets.com/images/modules/site/home/globe-500.h264.mp4">
+              </video>
+              <img srcset="https://github.githubassets.com/images/modules/site/home/globe-700.jpg 700w,
+                        https://github.githubassets.com/images/modules/site/home/globe.jpg 1400w" sizes="(max-width: 700px) 70vw, 700px" src="https://github.githubassets.com/images/modules/site/home/globe.jpg" alt="Planet earth with visualization of GitHub activity crossing the globe" class="width-full js-globe-fallback-image" loading="lazy" hidden="">
+            <canvas width="900" height="900" class="webgl-canvas js-globe-canvas" style="display: block; width: 900px; height: 900px;"></canvas></div>
+          </div>
+            
+        </div>
+    </div>
+</div>
+

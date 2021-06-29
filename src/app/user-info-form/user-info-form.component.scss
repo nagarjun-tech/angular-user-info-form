@@ -1,0 +1,41 @@
+
+.mt-10{
+    margin-top: 40px;
+}
+
+.p-card-body{
+    padding: 24px;
+}
+
+.p-footer-action-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-label {
+    &.required:after{
+        content:"*";
+        color:red;
+    }
+}
+
+    
+.has-errors{
+    .form-control{
+        border: 1px solid red;
+    }
+
+    .error-mesg{
+        color: red;
+    }
+}
+
+.p-user-preview{
+    margin-top: 20px;;
+
+    .col-6,
+    .col{
+        border: 1px solid lightgray;
+        font-size: 1rem;
+    }
+}
